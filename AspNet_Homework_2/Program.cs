@@ -133,7 +133,7 @@ async Task GetUser(HttpContext context)
             await context.Response.WriteAsync(GenerateHtmlPage(GetUserUpdateForm(user), "Update user", isPaging: false));
         }
     }
-    context.Response.Redirect("/");
+    //context.Response.Redirect("/"); из-за нее не показывается форма для обновления пользователя, а так показывается, но не переходит на главную страницу
 }
 
 async Task CreateUser(HttpContext context)
