@@ -79,12 +79,12 @@ app.Run(async (context) =>
 
     else if (request.Path.StartsWithSegments("/editUser") && context.Request.Method == "POST")
     {
-        await UpdateUser(context);
+        await GetUser(context);
     }
 
     else if (request.Path.StartsWithSegments("/editUser"))
     {
-        await response.WriteAsync(GenerateHtmlPage(GetUserUpdateForm(user), "Update user", isPaging: false));
+        await GetUser(context);
     }
 
     else
@@ -321,18 +321,18 @@ static string GetUserUpdateForm(User user)
 {
     return $"""
         <form action="/editUser" method="post">
-        <input type="hidden" name="id" value="{user.Id}">
+        <input type="hidden" name="id" value="{user.Id}" >
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" name="name" class="form-control" value="{user.Name}" required>
+          <label for="name">Name:</label>
+          <input type="text" name="name" class="form-control" value="{user.Name}" required>
         </div>
         <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="number" name="age" class="form-control" value="{user.Age}" required>
+          <label for="age">Age:</label>
+          <input type="number" name="age" class="form-control" value="{user.Age}" required>
         </div>
         <div class="form-group mt-3">
-            <input type="submit" value="Submit" class="btn btn-primary">
-        </div>
+          <input type="submit" value="Submit" class="btn btn-primary">
+          </div>
         </form>
         """;
 }
